@@ -1,0 +1,61 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcam: <http://purl.org/dc/dcam/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+
+@prefix todo: <http://hyperdata.it/vocabs/todo/> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcam: <http://purl.org/dc/dcam/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+
+@prefix todo: <http://hyperdata.it/vocabs/todo/> .
+
+# Task
+# description
+# created
+# completed
+# status
+# priority
+# visibility
+
+
+todo:Task a rdfs:Class ;
+       rdfs:subClassOf sioc:Item ;
+       rdfs:label "Item" ;
+       rdfs:comment "An item on a ToDo list" .
+
+todo:description a rdf:Property ;
+            rdfs:subPropertyOf dcterms:description ;
+            rdfs:label "description" ;
+            rdfs:comment "Description of the task to do" .
+
+todo:created a rdf:Property ;
+        rdfs:subPropertyOf dcterms:created ;
+        rdfs:label "created" ;
+        rdfs:comment "Time of the Task creation" .
+
+todo:completed a rdf:Property ;
+        rdfs:subPropertyOf dcterms:date ;
+        rdfs:label "completed" ;
+        rdfs:comment "Time of the Task completion" .
+
+todo:status a rdf:Property ;
+       rdfs:subPropertyOf rdfs:label ;
+       rdfs:label "status" ;
+       rdfs:comment "current status of the Task" .
+
+todo:priority a rdf:Property ;
+       rdfs:subPropertyOf rdfs:label ;
+       rdfs:label "priority" ;
+       rdfs:comment "priority of the Task" .
+
+# shouldn't be in vocab? presentation rather than model
+todo:visibility a rdf:Property .
