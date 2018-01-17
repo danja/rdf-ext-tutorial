@@ -12,11 +12,13 @@ class Tasks {
   create () {
     this.dataset = rdf.dataset()
     this.taskCounter = 0
+    return this
   }
 
   createTask () {
     this.taskCounter = this.taskCounter + 1
-    return Task.create (dataset, uri)
+    let uri = 'http://hyperdata.it/todo/tasks/' + this.taskCounter
+    return (new Task()).create(this.dataset, uri)
   }
 
   /**
@@ -33,17 +35,28 @@ class Tasks {
  */
 class Task {
 
-static create (dataset, uri) {
-  this.node = rdf.quad(rdf.namedNode(uri))
-  dataset.add(this.node, rdf.namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdf.namedNode(ns+'Task'))
+ create (dataset, uri) {
+   this.node = rdf.namedNode(uri)
+   console.log('this.node = '+this.node)
+
+   let predicate = rdf.namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type')
+   console.log('predicate = '+predicate)
+
+   let object = rdf.namedNode(ns+'Task')
+   console.log('object = '+object)
+
+   this.dataset = dataset
+
+  dataset.add(this.node, predicate, object)
+  return this
 }
 
   setDescription (text) {
-    dataset.add(this.node, ns+'description', rdf.literal(text))
+    this.dataset.add(this.node, ns+'description', rdf.literal(text))
   }
 
   getDescription () {
-    return dataset.match (this.node, ns+'description')
+    return this.dataset.match (this.node, ns+'description')
   }
 
   setCreated (datetime) {

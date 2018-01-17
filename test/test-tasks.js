@@ -1,9 +1,13 @@
 const assert = require('assert')
 
-const tasks = require('../src/tasks')
+const tasks = require('../src/Tasks')
 // assert.equal(actual, expected[, message])
 
-todo = tasks.create()
+tsks = new tasks()
+
+todo = tsks.create()
+
+// first = new Task()
 
 first = todo.createTask()
 
